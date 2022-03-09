@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const cards = require("../../store/Cards");
 
 router.get("/", (req, res) => {
   res.json(cards);
@@ -18,12 +17,15 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const newPost = {
     id: cards.length + 1,
+    img: req.body.img,
     head: req.body.head,
-    param: req.body.param
+    param: req.body.param,
   };
-  if (!newPost.head || !newPost.param) res.json({ msg: "You must include both parameters" });
+  if (!newPost.head || !newPost.param) {
+    res.json({ msg: "You must include both parameters" });
+  }
   cards.push(newPost);
-  res.status(200);
+  res.status(201).json(cards);
 });
 
 router.put("/:id", (req, res) => {

@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "dev": "nodemon index"
+    "server": "nodemon index"
   },
   "keywords": [],
   "author": "Jackson Iyamu",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "express": "^4.17.2",
+    "express-async-handler": "^1.2.0",
     "joi": "^17.6.0",
     "mongoose": "^6.2.1"
   },
