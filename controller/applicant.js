@@ -2,6 +2,10 @@ const getApplicants = (req, res) => {
     res.json({message: 'Get all applicants'})
 };
 
+const getApplicant = ( req, res ) => {
+    res.json({message: 'Get aplicant'})
+}
+
 const postApplicant = (req, res) => {
     res.json({message: 'Create applicants'})
 };
@@ -16,6 +20,7 @@ const deleteApplicant = (req, res) => {
 
 module.exports = {
     getApplicants,
+    getApplicant,
     postApplicant,
     updateApplicant,
     deleteApplicant 

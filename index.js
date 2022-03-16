@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 dotenv.config()
 const connectDB = require("./config/db");
 
@@ -11,13 +11,13 @@ const logger = (req, res, next) => {
   console.log(path.join(__filename));
   next();
 };
-connectDB()
+//connectDB()
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //app.use(logger)
 
 app.use("/api/applicants", require("./routes/api/applicants"));
-app.use("/api/cards", require("./routes/api/users"));
+app.use("/api/users", require("./routes/api/users"));
 
 const port = process.env.PORT || 5000;
 

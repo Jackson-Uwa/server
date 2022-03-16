@@ -1,14 +1,17 @@
 const express = require("express");
 const router = express.Router();
+const cards = require("../../store/cards");
+
 
 router.get("/", (req, res) => {
-  res.json(cards);
+  res.json(cards).status(200);
 });
 
 router.get("/:id", (req, res) => {
   const found = cards.find((card) => card.id === parseInt(req.params.id));
   if (found) {
     res.json(cards.filter((card) => card.id === parseInt(req.params.id)));
+    res.status(200)
   } else {
     res.status(400).json({ msg: `no member with id ${req.params.id}` });
   }
@@ -17,13 +20,10 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const newPost = {
     id: cards.length + 1,
-    img: req.body.img,
-    head: req.body.head,
-    param: req.body.param,
+    name: req.body.name,
+    email: req.body.email
   };
-  if (!newPost.head || !newPost.param) {
-    res.json({ msg: "You must include both parameters" });
-  }
+  if (!newPost.name || !newPost.email) res.json({ msg: "You must include both parameters" });
   cards.push(newPost);
   res.status(201).json(cards);
 });
