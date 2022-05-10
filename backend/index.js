@@ -26,7 +26,7 @@ app.use("/api/users", require("./routes/api/users"));
 app.use(
   cors({
     origin: ["http://localhost:3000","http://localhost:8000"],
-    method: ["GET", "POST", "PATCH", "DELETE"],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
   })
 );
 
