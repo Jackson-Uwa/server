@@ -1,11 +1,9 @@
 //const Products = require("../models/products");
 const products = require("../demo/products");
-const uuid = require('uuid');
+const uuid = require("uuid");
 
 const getProducts = (req, res) => {
-  //const products = Products.find()
   res.json(products);
-  //res.json({ pid: "Coca-Cola" });
 };
 
 const getProduct = (req, res) => {
@@ -40,20 +38,21 @@ const updateProduct = (req, res) => {
   if (found) {
     p.name = req.body.name;
     p.price = req.body.price;
-    res.status(200);
+    res.json(products).status(200);
   } else {
-    res.json({ err: `Sorry, no member with id ${req.params.id}` }).status(400);
+    res.status(400);
+    res.json({ err: `Sorry, no member with id ${req.params.id}` });
   }
 };
 
 const deleteProduct = (req, res) => {
-  const found = products.some((p) => p.id === req.params.id);
-  const p = products.find((p) => p.id === req.params.id);
-  if (found) {
-    const index = products.indexOf(p);
-    products.splice(index, 1);
-  } else {
+  const found = products.find((p) => p.id === req.params.id);
+  if (!found) {
     res.json({ err: `Sorry, no member with id ${req.params.id}` }).status(400);
+  } else {
+    const index = products.indexOf(found);
+    products.splice(index, 1);
+    res.json(products).status(200);
   }
 };
 
