@@ -11,15 +11,21 @@ const cors = require("cors");
 const app = express();
 
 connectDB();
+
+//body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+//error handler
 app.use(Error);
+
+//resource and endpoints 
 app.use("/api/products", require("./routes/api/products"));
 app.use("/api/users", require("./routes/api/users"));
 
 app.use(
   cors({
-    origin: "*",
+    origin: ["http://localhost:3000","http://localhost:8000"],
     method: ["GET", "POST", "PATCH", "DELETE"],
   })
 );
