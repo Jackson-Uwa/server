@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // use custom error handler
-const { Error } = require("./middleware/error");
+//const { Error } = require("./middleware/error");
 
 //const connectDB = require("./config/db");
 const cors = require("cors");
@@ -17,15 +17,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //error handler
-app.use(Error);
+//app.use(Error);
 
-//resource and endpoints 
+//resource and endpoints
 app.use("/api/products", require("./routes/api/products"));
 app.use("/api/users", require("./routes/api/users"));
 
 app.use(
   cors({
-    origin: ["http://localhost:3000","http://localhost:8000"]
+    origin: "*",
   })
 );
 
