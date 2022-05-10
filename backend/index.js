@@ -6,11 +6,11 @@ dotenv.config();
 // use custom error handler
 const { Error } = require("./middleware/error");
 
-const connectDB = require("./config/db");
+//const connectDB = require("./config/db");
 const cors = require("cors");
 const app = express();
 
-connectDB();
+//connectDB();
 
 //body parser
 app.use(express.json());
