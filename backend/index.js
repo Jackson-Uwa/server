@@ -1,18 +1,28 @@
 const express = require("express");
-const path = require("path");
+//const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const connectDB = require("./config/db");
+// use custom error handler
+const { Error } = require("./middleware/error");
 
+const connectDB = require("./config/db");
+const cors = require("cors");
 const app = express();
 
-//connectDB();
+connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(Error);
 app.use("/api/products", require("./routes/api/products"));
-app.use("/api/users", require('./routes/api/users'));
+app.use("/api/users", require("./routes/api/users"));
+
+app.use(
+  cors({
+    origin: "*",
+    method: ["GET", "POST", "PATCH", "DELETE"],
+  })
+);
 
 const port = process.env.PORT || 5000;
 
